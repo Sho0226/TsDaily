@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TsDairy
 
-## Getting Started
+## 概要
 
-First, run the development server:
+TsDairy は、日々の学習内容や振り返りを記録するための TypeScript ベースの日記アプリケーションです。Next.js を使用して構築されており、日付ごとのフォルダを自動生成し、学習の進捗を追跡することができます。
+※UTC+9 対応
+
+![image](public/main.png)
+
+## 特徴
+
+- 日付ごとのフォルダ自動生成
+- TODO リスト管理
+- シンプルで使いやすい UI
+- TypeScript & Next.js による堅牢な実装
+
+## 使い方
+
+### 新しい日記の作成
+
+```bash
+npm run daily
+```
+
+このコマンドを実行すると、現在の日付のフォルダが `src/app/daily/YYYYMMDD` の形式で作成されます。同時に以下のファイルも自動生成されます：
+
+- `page.tsx` - 日記ページのコンポーネント
+- `page.module.css` - スタイル定義
+- `README.md` - その日の学習内容や TODO を記録するファイル
+
+### 日記の閲覧
+
+アプリケーションを起動すると、トップページに日付一覧が表示されます。日付をクリックすると、その日の日記ページに移動します。
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## プロジェクト構造
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+my-app/
+├── src/
+│   └── app/
+│       ├── page.tsx        # トップページ
+│       ├── page.module.css # トップページのスタイル
+│       └── daily/          # 日記フォルダ
+│           ├── 20250331/   # 日付フォルダ
+│           │   ├── page.tsx
+│           │   ├── page.module.css
+│           │   └── README.md
+│           └── ...
+├── create-daily.mjs    # 日記フォルダ生成スクリプト
+└── package.json
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 技術スタック
 
-## Learn More
+- **フレームワーク**: Next.js
+- **言語**: TypeScript
+- **スタイリング**: CSS Modules
 
-To learn more about Next.js, take a look at the following resources:
+## ライセンス
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+学習の記録を習慣化し、日々の進捗を可視化することで、より効果的な学習体験を提供します。TsDairy で学習の旅を記録しましょう！
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
