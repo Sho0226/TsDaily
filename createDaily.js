@@ -1,12 +1,13 @@
 import fs from "fs";
 
 const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+const dailyPath = `./src/app/daily/${today}`;
 
-if (!fs.existsSync(today)) {
-  fs.mkdirSync(today);
-  console.log(`今日学習するためのフォルダを作成しました: ${today}`);
+if (!fs.existsSync(dailyPath)) {
+  fs.mkdirSync(dailyPath);
+  console.log(`今日学習するためのフォルダを作成しました: ${dailyPath}`);
 } else {
-  console.log(`今日のフォルダはすでに存在します: ${today}`);
+  console.log(`今日のフォルダはすでに存在します: ${dailyPath}`);
 }
 
 const templates = {
@@ -26,7 +27,7 @@ const templates = {
 };
 
 Object.entries(templates).forEach(([fileName, content]) => {
-  const filePath = `${today}/${fileName}`;
+  const filePath = `${dailyPath}/${fileName}`;
 
   if (!fs.existsSync(filePath)) {
     fs.writeFileSync(filePath, content);
