@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-const dailyPath = `./src/app/daily/${today}`;
+const dailyPath = `./src/app/(daily)/${today}`;
 
 if (!fs.existsSync(dailyPath)) {
   fs.mkdirSync(dailyPath);
