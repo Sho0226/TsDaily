@@ -1,6 +1,13 @@
 import fs from "fs";
 
-const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+const getJapanDate = () => {
+  const now = new Date();
+  // UTC+9 hours for Japan Standard Time
+  const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  return japanTime.toISOString().slice(0, 10).replace(/-/g, "");
+};
+
+const today = getJapanDate();
 const dailyPath = `./src/app/(daily)/${today}`;
 
 if (!fs.existsSync(dailyPath)) {
