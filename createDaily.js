@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 
 const getJapanDate = () => {
   const now = new Date();
@@ -8,7 +9,15 @@ const getJapanDate = () => {
 };
 
 const today = getJapanDate();
-const dailyPath = `./src/app/(daily)/${today}`;
+const projectRoot = process.cwd();
+
+const parentDir = path.join(projectRoot, "src", "app", "(daily)");
+const dailyPath = path.join(parentDir, today);
+
+if (!fs.existsSync(parentDir)) {
+  fs.mkdirSync(parentDir, { recursive: true });
+  console.log(`親ディレクトリを作成しました: ${parentDir}`);
+}
 
 if (!fs.existsSync(dailyPath)) {
   fs.mkdirSync(dailyPath);
@@ -20,21 +29,21 @@ if (!fs.existsSync(dailyPath)) {
 const templates = {
   "page.tsx": `import styles from "./page.module.css";
       
-  export default function Page() { 
-    return <div className={styles.daily}>Daily Note for ${today}</div>; 
-  }`,
+export default function Page() { 
+  return <div className={styles.daily}>Daily Note for ${today}</div>; 
+}`,
   "page.module.css": `.daily {
-    font-size: 2rem;
-    text-align: center;
-  }`,
+  font-size: 2rem;
+  text-align: center;
+}`,
   "README.md": `# Daily Note for ${today}
-  - [ ] 今日のTODO
-  - [ ] 今日の学習内容
-  - [ ] 今日の振り返り`,
+- [ ] 今日のTODO
+- [ ] 今日の学習内容
+- [ ] 今日の振り返り`,
 };
 
 Object.entries(templates).forEach(([fileName, content]) => {
-  const filePath = `${dailyPath}/${fileName}`;
+  const filePath = path.join(dailyPath, fileName);
 
   if (!fs.existsSync(filePath)) {
     fs.writeFileSync(filePath, content);
