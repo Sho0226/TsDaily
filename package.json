@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "daily": "node createDaily.js"
+    "daily": "tsx createDaily.ts"
   },
   "dependencies": {
     "next": "^15.2.4",
@@ -24,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "jiti": "^2.4.2",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }
