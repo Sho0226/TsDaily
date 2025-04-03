@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.page}>
-        <h1>TsDairy</h1>
+        <h1>TsDaily</h1>
         <h2 className={styles.card}>
           <p className={styles.title}>勉強記録</p>
           <p className={styles.description}>
